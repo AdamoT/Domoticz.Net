@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a6857022-c9e8-49b3-bfb0-3b47a194afcd</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DomoticzNet</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Service\BasicAuthorizationProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\IDomoticzAuthorizationProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\IDomoticzService.cs" />
+  </ItemGroup>
+</Project>

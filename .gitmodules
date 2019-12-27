@@ -1,0 +1,3 @@
+[submodule "src/DomoticzNet/NetExtensions"]
+	path = src/DomoticzNet/NetExtensions
+	url = https://code3d.visualstudio.com/NetExtensions/_git/NetExtensions
