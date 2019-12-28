@@ -12,7 +12,7 @@ namespace DomoticzNet.Service
 {
     public partial class DomoticzService
     {
-        public async Task<List<DomoticzProperty>> GetProperties(DeviceFilter filter = DeviceFilter.All, bool used = true, bool favorite = false, bool hidden = false)
+        public async Task<List<DomoticzPropertyModel>> GetProperties(DeviceFilter filter = DeviceFilter.All, bool used = true, bool favorite = false, bool hidden = false)
         {
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeDevices;
@@ -27,7 +27,7 @@ namespace DomoticzNet.Service
             return response.Result;
         }
 
-        public async Task<DomoticzProperty> GetProperty(ulong idx)
+        public async Task<DomoticzPropertyModel> GetProperty(ulong idx)
         {
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeDevices;

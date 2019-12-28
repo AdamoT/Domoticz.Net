@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DomoticzNet.Service.Models
 {
-    public class DomoticzProperty
+    public class DomoticzPropertyModel
     {
         [JsonProperty("AddjMulti")]
         public long AddjMulti { get; set; }
@@ -20,7 +20,7 @@ namespace DomoticzNet.Service.Models
         public long AddjValue2 { get; set; }
 
         [JsonProperty("BatteryLevel")]
-        public long BatteryLevel { get; set; }
+        public byte BatteryLevel { get; set; }
 
         /// <summary>
         /// Color Value or empty string if not turned on

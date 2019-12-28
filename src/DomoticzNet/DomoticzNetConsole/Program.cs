@@ -1,25 +1,42 @@
 ﻿using DomoticzNet.Service;
 
 using System;
-using System.Net;
 
 namespace DomoticzNetConsole
 {
     class Program
     {
-#pragma warning disable IDE0060 // Remove unused parameter
+        private static string _Address, _UserName, _Password;
+        private static int _Port;
+
         static void Main(string[] args)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
-            var authorizationProvider = new BasicAuthorizationService("Adam", "Buhddt#01At");
-            var service = new DomoticzService(IPAddress.Parse("192.168.1.29").ToString(), 8080, authorizationProvider);
+            _UserName = args[0];
+            _Password = args[1];
+            _Address = "192.16.1.29";
+            _Port = 8080;
+
+            //TestApis();
+            TestParser();
+
+            Console.ReadKey();
+        }
+
+        private static void TestParser()
+        {
+            var authorizationProvider = new BasicAuthorizationService(_UserName, _Password);
+            var service = new DomoticzService(_Address, _Port, authorizationProvider);
+        }
+
+        private static void TestApis()
+        {
+            var authorizationProvider = new BasicAuthorizationService(_UserName, _Password);
+            var service = new DomoticzService(_Address, _Port, authorizationProvider);
 
             var instanceInfo = service.GetInstanceInfo().Result;
-            //Console.WriteLine(JsonConvert.SerializeObject(instanceInfo, Formatting.Indented));
-
             var logs = service.GetLogs(TimeSpan.FromSeconds(1000), DomoticzNet.Service.Models.LogLevel.Error).Result;
-
             var sunInfo = service.GetSunriseSunsetInfo().Result;
+            var settings = service.GetSettings().Result;
 
             var properties = service.GetProperties().Result;
             if (properties.Count > 0)
@@ -28,10 +45,6 @@ namespace DomoticzNetConsole
             }
 
             service.AddLog("Hello World").Wait();
-
-            var settings = service.GetSettings().Result;
-
-            Console.ReadKey();
         }
     }
 }

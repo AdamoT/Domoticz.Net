@@ -13,6 +13,6 @@ namespace DomoticzNet.Service.Models
         public string AppVersion { get; set; }
 
         [JsonProperty("result")]
-        public List<DomoticzProperty> Result { get; } = new List<DomoticzProperty>();
+        public List<DomoticzPropertyModel> Result { get; } = new List<DomoticzPropertyModel>();
     }
 }
