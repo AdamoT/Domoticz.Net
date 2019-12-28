@@ -10,8 +10,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Service\BasicAuthorizationProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converters\ColorValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_Properties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_Security.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_System.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\IDomoticzAuthorizationProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\IDomoticzService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\ColorValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\CommandResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DeviceFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DomoticzSettingsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\LogLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DomoticzProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\GetLogsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\GetPropertiesResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\InstanceInfoResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\ResponseStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SecurityStatusResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SunriseSunsetInfoResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SwitchType.cs" />
   </ItemGroup>
 </Project>

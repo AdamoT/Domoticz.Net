@@ -1,24 +1,18 @@
-﻿
-namespace DomoticzIntegration.Service.Models
-{
-    public class GetPropertiesResponse
-    {
-        public int ActTime { get; set; }
-        public string AstrTwilightEnd { get; set; }
-        public string AstrTwilightStart { get; set; }
-        public string CivTwilightEnd { get; set; }
-        public string CivTwilightStart { get; set; }
-        public string DayLength { get; set; }
-        public string NautTwilightEnd { get; set; }
-        public string NautTwilightStart { get; set; }
-        public string ServerTime { get; set; }
-        public string SunAtSouth { get; set; }
-        public string Sunrise { get; set; }
-        public string Sunset { get; set; }
-        public string app_version { get; set; }
-        public string status { get; set; }
-        public string title { get; set; }
+﻿using Newtonsoft.Json;
 
-        public DomoticzProperty[] result { get; set; }
+using System.Collections.Generic;
+
+namespace DomoticzNet.Service.Models
+{
+    public partial class GetPropertiesResponse : SunriseSunsetInfoResponse
+    {
+        [JsonProperty("ActTime")]
+        public long ActTime { get; set; }
+
+        [JsonProperty("app_version")]
+        public string AppVersion { get; set; }
+
+        [JsonProperty("result")]
+        public List<DomoticzProperty> Result { get; } = new List<DomoticzProperty>();
     }
 }
