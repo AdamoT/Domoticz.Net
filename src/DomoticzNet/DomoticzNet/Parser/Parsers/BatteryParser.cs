@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Parser.Properties;
+﻿using DomoticzNet.Parser.Traits;
 using DomoticzNet.Service.Models;
 
 using System;
@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace DomoticzNet.Parser.Parsers
 {
-    public class BatteryParser : IPropertyParser
+    public class BatteryParser : ITraitParser
     {
-        public void ParseProperties(IReadOnlyList<DomoticzPropertyModel> models, ICollection<IDomoticzProperty> properties)
+        public void ParseProperties(IReadOnlyList<DomoticzPropertyModel> models, ICollection<IDomoticzTrait> properties)
         {
             if (models is null)
                 throw new ArgumentNullException(nameof(models));
@@ -17,11 +17,12 @@ namespace DomoticzNet.Parser.Parsers
             if (properties is null)
                 throw new ArgumentNullException(nameof(properties));
 
-            var avgBattery = models.Where(x => x.BatteryLevel <= 100)
+            var batterySupportingModels = models.Where(x => x.BatteryLevel <= 100);
+            var avgBattery = batterySupportingModels
                                 .Average(x => x.BatteryLevel);
 
             if (avgBattery <= 100)
-                properties.Add(new BatteryProperty(models.First().Idx, (byte)Math.Round(avgBattery)));
+                properties.Add(new BatteryTrait(batterySupportingModels.First(), (byte)Math.Round(avgBattery)));
         }
     }
 }

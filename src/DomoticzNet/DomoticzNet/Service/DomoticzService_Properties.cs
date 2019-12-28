@@ -43,7 +43,7 @@ namespace DomoticzNet.Service
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = _QueryParamSwitchLight;
             query[_QueryIdx] = idx.ToString();
-            query[_QuerySwitchCmd] = state ? _QuerySwitchCmdOn : _QuerySwitchCmdOff;
+            query[_QuerySwitchCmd] = state ? Consts.On : Consts.Off;
 
             return InvokeApiCall<CommandResponse>(query);
         }
@@ -194,7 +194,7 @@ namespace DomoticzNet.Service
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = "switchscene";
             query[_QueryIdx] = idx.ToString();
-            query[_QuerySwitchCmd] = state ? _QuerySwitchCmdOn : _QuerySwitchCmdOff;
+            query[_QuerySwitchCmd] = state ? Consts.On : Consts.Off;
 
             return InvokeApiCall<CommandResponse>(query);
         }

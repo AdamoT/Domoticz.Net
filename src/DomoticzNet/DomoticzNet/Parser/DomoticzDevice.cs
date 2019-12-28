@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Parser.Properties;
+﻿using DomoticzNet.Parser.Traits;
 
 using System.Collections.Generic;
 
@@ -8,13 +8,14 @@ namespace DomoticzNet.Parser
     {
         #region Properties
 
-        public IReadOnlyList<IDomoticzProperty> Properties { get; }
+        public string Id { get; set; }
+        public IReadOnlyList<IDomoticzTrait> Properties { get; }
 
         #endregion Properties
 
         #region Constructors
 
-        public DomoticzDevice(IReadOnlyList<IDomoticzProperty> properties)
+        public DomoticzDevice(IReadOnlyList<IDomoticzTrait> properties)
         {
             Properties = properties;
         }

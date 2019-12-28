@@ -12,10 +12,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parser\DomoticzDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\DomoticzDeviceParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\BatteryParser.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\IPropertyParser.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Parser\Properties\BatteryProperty.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Parser\Properties\IDomoticzProperty.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Parser\Properties\PropertyBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\LevelParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\ColorSettingParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\ITraitParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\OnOffParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\BatteryTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\LevelTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\ColorSettingTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\IDomoticzTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\OnOffTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\SensorTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\SetPointTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\TraitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\BasicAuthorizationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converters\ColorValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzException.cs" />
@@ -26,7 +34,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\IDomoticzAuthorizationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\ColorValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\CommandResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\Consts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DeviceFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DeviceSubType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DeviceType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DimmerType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DomoticzSettingsResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\LogLevel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DomoticzPropertyModel.cs" />
@@ -37,5 +49,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SecurityStatusResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SunriseSunsetInfoResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SwitchType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\UnitType.cs" />
   </ItemGroup>
 </Project>

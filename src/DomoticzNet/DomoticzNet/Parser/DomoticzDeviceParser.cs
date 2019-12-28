@@ -1,9 +1,11 @@
 ﻿using DomoticzNet.Parser.Parsers;
-using DomoticzNet.Parser.Properties;
+using DomoticzNet.Parser.Traits;
 using DomoticzNet.Service.Models;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace DomoticzNet.Parser
 {
@@ -27,7 +29,7 @@ namespace DomoticzNet.Parser
 
         #region Fields
 
-        private List<IPropertyParser> _Parsers = null;
+        private List<ITraitParser> _Parsers = null;
 
         #endregion Fields
 
@@ -35,10 +37,13 @@ namespace DomoticzNet.Parser
 
         public DomoticzDeviceParser()
         {
-            _Parsers = new List<IPropertyParser>()
-            {
-                new BatteryParser(),
-            };
+            var parserTypes = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(x => typeof(ITraitParser).IsAssignableFrom(x)
+                    && !x.IsInterface
+                    && !x.IsAbstract
+                    && x.GetConstructors().Any(c => c.GetParameters().Length == 0));
+
+            _Parsers = new List<ITraitParser>(parserTypes.Select(x => Activator.CreateInstance(x) as ITraitParser));
         }
 
         #endregion Constructors
@@ -47,13 +52,16 @@ namespace DomoticzNet.Parser
 
         private DomoticzDevice ParseProperties(IReadOnlyList<DomoticzPropertyModel> models)
         {
-            var properties = new List<IDomoticzProperty>();
+            var properties = new List<IDomoticzTrait>();
             for (int i = 0; i < _Parsers.Count; ++i)
             {
                 _Parsers[i].ParseProperties(models, properties);
             }
 
-            return new DomoticzDevice(properties);
+            return new DomoticzDevice(properties)
+            {
+                Id = models.First().Id,
+            };
         }
 
         #endregion Private Methods

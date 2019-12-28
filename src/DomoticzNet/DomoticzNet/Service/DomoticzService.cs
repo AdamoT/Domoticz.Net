@@ -51,8 +51,6 @@ namespace DomoticzNet.Service
         private const string _QueryIdx = "idx";
         private const string _QuerySwitchCmd = "switchcmd";
         private const string _QuerySwitchCmdToggle = "Toggle";
-        private const string _QuerySwitchCmdOn = "On";
-        private const string _QuerySwitchCmdOff = "Off";
 
         private const string _QueryBrightness = "brightness";
         private const string _QueryIsWhite = "isWhite";

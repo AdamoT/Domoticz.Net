@@ -38,8 +38,9 @@ namespace DomoticzNet.Service.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Supported values: abs, none
+        /// 
         /// </summary>
+        /// <see cref="Models.DimmerType"/>
         [JsonProperty("DimmerType", NullValueHandling = NullValueHandling.Ignore)]
         public string DimmerType { get; set; }
 
@@ -80,13 +81,13 @@ namespace DomoticzNet.Service.Models
         public DateTime LastUpdate { get; set; }
 
         [JsonProperty("Level", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Level { get; set; }
+        public int? Level { get; set; }
 
         [JsonProperty("LevelInt", NullValueHandling = NullValueHandling.Ignore)]
-        public long? LevelInt { get; set; }
+        public int? LevelInt { get; set; }
 
         [JsonProperty("MaxDimLevel", NullValueHandling = NullValueHandling.Ignore)]
-        public long? MaxDimLevel { get; set; }
+        public int? MaxDimLevel { get; set; }
 
         [JsonProperty("Name")]
         public string Name { get; set; }
@@ -118,6 +119,10 @@ namespace DomoticzNet.Service.Models
         [JsonProperty("StrParam2", NullValueHandling = NullValueHandling.Ignore)]
         public string StrParam2 { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <see cref="Models.DeviceSubType"/>
         [JsonProperty("SubType")]
         public string SubType { get; set; }
 
@@ -136,6 +141,7 @@ namespace DomoticzNet.Service.Models
         /// <summary>
         /// Known values: Color Switch, Light/Switch, Usage, Thermostat, General, Temp, Lux, Lighting 2, Security
         /// </summary>
+        /// <see cref="Models.DeviceType"/>
         [JsonProperty("Type")]
         public string Type { get; set; }
 
