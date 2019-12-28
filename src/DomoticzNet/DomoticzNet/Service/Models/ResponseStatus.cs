@@ -1,8 +1,12 @@
-﻿namespace DomoticzIntegration.Service.Models
+﻿using Newtonsoft.Json;
+
+namespace DomoticzNet.Service.Models
 {
     public enum ResponseStatus
     {
-        Ok,
-        Err,
+        [JsonProperty("Ok")]
+        OK,
+        [JsonProperty("Err")]
+        Error,
     }
 }

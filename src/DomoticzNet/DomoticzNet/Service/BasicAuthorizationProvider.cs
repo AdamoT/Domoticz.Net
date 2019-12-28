@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace DomoticzNet.Service
@@ -8,9 +8,30 @@ namespace DomoticzNet.Service
     {
         #region IDomoticzAuthorizationProvider
 
-        public bool UseHttps { get; }
+        public virtual void AuthorizeUri(UriBuilder uriBuilder)
+        {
+            if (uriBuilder is null)
+                throw new ArgumentNullException(nameof(uriBuilder));
+
+            uriBuilder.Scheme = UseHttps ? "https" : "http";
+        }
+
+        public virtual void AuthorizeRequest(HttpWebRequest request)
+        {
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
+
+            var authorizationString = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_UserName}:{_Password}"));
+            request.Headers[HttpRequestHeader.Authorization] = $"Basic {authorizationString}";
+        }
 
         #endregion IDomoticzAuthorizationProvider
+
+        #region Properties
+
+        public virtual bool UseHttps { get; set; }
+
+        #endregion Properties
 
         #region Fields
 
@@ -20,13 +41,12 @@ namespace DomoticzNet.Service
 
         #region Constructors
 
-        public BasicAuthorizationService(string userName, string password, bool useHttps = false)
+        public BasicAuthorizationService(string userName, string password)
         {
-            UseHttps = useHttps;
             _UserName = userName;
             _Password = password;
         }
-       
+
         #endregion Constructors
     }
 }

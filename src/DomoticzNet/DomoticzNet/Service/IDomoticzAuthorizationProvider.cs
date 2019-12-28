@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Net;
 
 namespace DomoticzNet.Service
 {
     public interface IDomoticzAuthorizationProvider
     {
-        bool UseHttps { get; }
+        void AuthorizeUri(UriBuilder uriBuilder);
+        void AuthorizeRequest(HttpWebRequest request);
     }
 }

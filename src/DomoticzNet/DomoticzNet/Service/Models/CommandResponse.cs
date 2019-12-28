@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
-namespace DomoticzIntegration.Service.Models
+namespace DomoticzNet.Service.Models
 {
     public class CommandResponse
     {
-        public ResponseStatus Status { get; set; }
+        [JsonProperty("title")]
         public string Title { get; set; }
+
+        [JsonProperty("status")]
+        public ResponseStatus Status { get; set; }
+
+        [JsonProperty("message")]
         public string Message { get; set; }
     }
 }
