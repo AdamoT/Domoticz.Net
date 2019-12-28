@@ -1,2 +1,2 @@
 # Domoticz.Net
-Domoticz Client written in .Net
+Lightweight Domoticz Http API Client for .Net
