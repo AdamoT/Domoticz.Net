@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
 
 namespace DomoticzNet.Parser.Traits
 {
@@ -7,7 +7,7 @@ namespace DomoticzNet.Parser.Traits
         public float Value { get; set; }
         public UnitType Unit { get; set; }
 
-        public SensorTrait(DomoticzPropertyModel propertyModel) : base(propertyModel)
+        public SensorTrait(DomoticzDeviceModel propertyModel) : base(propertyModel)
         {
         }
     }

@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
 
 namespace DomoticzNet.Parser.Traits
 {
@@ -6,7 +6,7 @@ namespace DomoticzNet.Parser.Traits
     {
         public byte BatteryPercentage { get; }
 
-        public BatteryTrait(DomoticzPropertyModel model, byte batteryPercentage) : base(model)
+        public BatteryTrait(DomoticzDeviceModel model, byte batteryPercentage) : base(model)
         {
             BatteryPercentage = batteryPercentage;
         }

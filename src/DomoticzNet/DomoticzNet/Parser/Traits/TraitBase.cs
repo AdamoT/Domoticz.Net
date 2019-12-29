@@ -1,16 +1,18 @@
-﻿using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
 
 namespace DomoticzNet.Parser.Traits
 {
     public class TraitBase : IDomoticzTrait
     {
         public ulong Id { get; }
-        public DomoticzPropertyModel Model { get; }
+        public DomoticzDeviceModel SourceModel { get; }
 
-        public TraitBase(DomoticzPropertyModel propertyModel)
+        public TraitBase(DomoticzDeviceModel propertyModel)
         {
-            Model = propertyModel ?? throw new System.ArgumentNullException(nameof(propertyModel));
+            SourceModel = propertyModel ?? throw new System.ArgumentNullException(nameof(propertyModel));
             Id = propertyModel.Idx;
         }
+
+        public override string ToString() => $"{this.GetType().Name} - {SourceModel.Name}";
     }
 }

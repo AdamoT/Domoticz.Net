@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
 
 using System.Threading.Tasks;
 using System.Web;

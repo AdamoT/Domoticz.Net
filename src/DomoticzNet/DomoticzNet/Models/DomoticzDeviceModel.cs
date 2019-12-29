@@ -3,9 +3,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace DomoticzNet.Service.Models
+namespace DomoticzNet.Models
 {
-    public class DomoticzPropertyModel
+    public class DomoticzDeviceModel
     {
         [JsonProperty("AddjMulti")]
         public long AddjMulti { get; set; }
@@ -127,13 +127,18 @@ namespace DomoticzNet.Service.Models
         public string SubType { get; set; }
 
         /// <summary>
-        /// Known values: Dimmer, On/Off, Blinds Percentage, Blinds Percentage Inverted
+        /// 
         /// </summary>
+        /// <see cref="Models.SwitchType"/>
         [JsonProperty("SwitchType", NullValueHandling = NullValueHandling.Ignore)]
         public string SwitchType { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <see cref="SwitchTypeVal"/>
         [JsonProperty("SwitchTypeVal", NullValueHandling = NullValueHandling.Ignore)]
-        public SwitchType SwitchTypeVal { get; set; }
+        public SwitchTypeVal SwitchTypeVal { get; set; }
 
         [JsonProperty("Timers")]
         public bool Timers { get; set; }

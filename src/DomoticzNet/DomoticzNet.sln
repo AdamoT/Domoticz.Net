@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomoticzNetConsole", "Domot
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DomoticzNet", "DomoticzNet\DomoticzNet.shproj", "{A6857022-C9E8-49B3-BFB0-3B47A194AFCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomoticzNetStandard", "DomoticzNetStandard\DomoticzNetStandard.csproj", "{12AC13EA-C508-4903-A7D6-2406A2C5C15A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomoticzNetStandard", "DomoticzNetStandard\DomoticzNetStandard.csproj", "{12AC13EA-C508-4903-A7D6-2406A2C5C15A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomoticzNetTests", "DomoticzNetTests\DomoticzNetTests.csproj", "{805A0231-5324-42ED-984D-FCD1B1AE9255}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		DomoticzNet\DomoticzNet.projitems*{805a0231-5324-42ed-984d-fcd1b1ae9255}*SharedItemsImports = 4
 		DomoticzNet\DomoticzNet.projitems*{98310842-84e2-4457-a16d-f4c7eb0baa6c}*SharedItemsImports = 4
 		DomoticzNet\DomoticzNet.projitems*{a6857022-c9e8-49b3-bfb0-3b47a194afcd}*SharedItemsImports = 13
 	EndGlobalSection
@@ -27,6 +30,10 @@ Global
 		{12AC13EA-C508-4903-A7D6-2406A2C5C15A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AC13EA-C508-4903-A7D6-2406A2C5C15A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AC13EA-C508-4903-A7D6-2406A2C5C15A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{805A0231-5324-42ED-984D-FCD1B1AE9255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{805A0231-5324-42ED-984D-FCD1B1AE9255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{805A0231-5324-42ED-984D-FCD1B1AE9255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{805A0231-5324-42ED-984D-FCD1B1AE9255}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

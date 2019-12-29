@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
 
 namespace DomoticzNet.Parser.Traits
 {
@@ -8,7 +8,7 @@ namespace DomoticzNet.Parser.Traits
 
         public ColorValue Color { get; set; }
 
-        public ColorSettingTrait(DomoticzPropertyModel model) : base(model)
+        public ColorSettingTrait(DomoticzDeviceModel model) : base(model)
         {
         }
     }

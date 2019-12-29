@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
 
 namespace DomoticzNet.Parser.Traits
 {
@@ -8,7 +8,7 @@ namespace DomoticzNet.Parser.Traits
         public int MaxLevel { get; set; }
         public bool IsReadOnly { get; set; }
 
-        public LevelTrait(DomoticzPropertyModel propertyModel) : base(propertyModel)
+        public LevelTrait(DomoticzDeviceModel propertyModel) : base(propertyModel)
         {
         }
     }

@@ -1,25 +1,27 @@
-﻿namespace DomoticzNet.Service.Models
+﻿namespace DomoticzNet.Models
 {
     public enum UnitType
     {
-        TemperatureStart = 0,
+        Unknown = 0,
+
+        TemperatureStart = 100,
         Celcius,
         Kelvin,
         Fahrenheit,
-        TemperatureEnd = 100,
+        TemperatureEnd = 200,
 
         VoltageStart,
         Volt,
         KiloVolt,
-        VoltageEnd = 200,
+        VoltageEnd = 300,
 
         PowerStart,
         Wat,
         KiloWat,
-        PowerEnd = 300,
+        PowerEnd = 400,
 
         PowerCurrentStart,
         Amper,
-        PowerCurrentEnd = 400,
+        PowerCurrentEnd = 500,
     }
 }

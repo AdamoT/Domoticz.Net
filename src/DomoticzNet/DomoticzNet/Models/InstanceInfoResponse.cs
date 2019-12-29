@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 using System;
 
-namespace DomoticzNet.Service.Models
+namespace DomoticzNet.Models
 {
     public class InstanceInfoResponse : CommandResponse
     {

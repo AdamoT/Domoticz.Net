@@ -1,5 +1,5 @@
-﻿using DomoticzNet.Service.Converters;
-using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
+using DomoticzNet.Service.Converters;
 
 using Newtonsoft.Json;
 
@@ -23,11 +23,7 @@ namespace DomoticzNet.Service
         public string Host { get; }
         public int Port { get; }
 
-        #endregion Properties
-
-        #region Fields
-
-        private JsonSerializerSettings _SerializerSettings = new JsonSerializerSettings
+        public static JsonSerializerSettings SerializerSettings { get; } = new JsonSerializerSettings
         {
             Formatting = Formatting.Indented,
             Converters = new List<JsonConverter>()
@@ -35,7 +31,12 @@ namespace DomoticzNet.Service
                     new ColorValueConverter(),
                 }
         };
-        private JsonSerializer _Serializer = new JsonSerializer();
+        public JsonSerializer Serializer { get; }
+
+        #endregion Properties
+
+        #region Fields
+
         private IDomoticzAuthorizationProvider _AuthorizationProvider = null;
 
         #endregion Fields
@@ -61,7 +62,7 @@ namespace DomoticzNet.Service
 
         public DomoticzService(string host, int port, IDomoticzAuthorizationProvider authorizationProvider = null)
         {
-            _Serializer = JsonSerializer.Create(_SerializerSettings);
+            Serializer = JsonSerializer.Create(SerializerSettings);
 
             Host = string.IsNullOrEmpty(host)
                 ? throw new ArgumentNullException(nameof(host))
@@ -100,7 +101,7 @@ namespace DomoticzNet.Service
                     {
                         using (var jsonReader = new JsonTextReader(new StreamReader(responseStream)))
                         {
-                            var result = _Serializer.Deserialize<T>(jsonReader);
+                            var result = Serializer.Deserialize<T>(jsonReader);
                             if (result is CommandResponse commandResponse)
                             {
                                 if (commandResponse.Status == ResponseStatus.Error)

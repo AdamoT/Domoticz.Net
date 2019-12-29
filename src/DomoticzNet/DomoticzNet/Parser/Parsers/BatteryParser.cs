@@ -1,28 +1,23 @@
-﻿using DomoticzNet.Parser.Traits;
-using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
+using DomoticzNet.Parser.Traits;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DomoticzNet.Parser.Parsers
 {
     public class BatteryParser : ITraitParser
     {
-        public void ParseProperties(IReadOnlyList<DomoticzPropertyModel> models, ICollection<IDomoticzTrait> properties)
+        public void ParseProperties(DomoticzDeviceModel model, ICollection<IDomoticzTrait> properties)
         {
-            if (models is null)
-                throw new ArgumentNullException(nameof(models));
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
 
             if (properties is null)
                 throw new ArgumentNullException(nameof(properties));
 
-            var batterySupportingModels = models.Where(x => x.BatteryLevel <= 100);
-            var avgBattery = batterySupportingModels
-                                .Average(x => x.BatteryLevel);
-
-            if (avgBattery <= 100)
-                properties.Add(new BatteryTrait(batterySupportingModels.First(), (byte)Math.Round(avgBattery)));
+            if (model.BatteryLevel <= 100)
+                properties.Add(new BatteryTrait(model, model.BatteryLevel));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DomoticzNet.Service.Models
+namespace DomoticzNet.Models
 {
     public enum ResponseStatus
     {

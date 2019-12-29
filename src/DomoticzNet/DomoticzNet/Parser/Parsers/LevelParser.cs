@@ -1,5 +1,5 @@
-﻿using DomoticzNet.Parser.Traits;
-using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
+using DomoticzNet.Parser.Traits;
 
 using System;
 using System.Collections.Generic;
@@ -8,35 +8,35 @@ namespace DomoticzNet.Parser.Parsers
 {
     public class LevelParser : ITraitParser
     {
-        public void ParseProperties(IReadOnlyList<DomoticzPropertyModel> models, ICollection<IDomoticzTrait> traits)
+        public void ParseProperties(DomoticzDeviceModel model, ICollection<IDomoticzTrait> traits)
         {
-            if (models is null)
-                throw new ArgumentNullException(nameof(models));
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
             if (traits is null)
                 throw new ArgumentNullException(nameof(traits));
 
-            for (int i = 0; i < models.Count; ++i)
+            if (model.HaveDimmer.HasValue
+                && model.HaveDimmer.Value == true
+                && !string.IsNullOrEmpty(model.DimmerType)
+                && (model.DimmerType != DimmerType.None
+                    || model.SwitchType == SwitchType.BlindsPercentageInverted
+                    || model.SwitchType == SwitchType.BlindsPercentage))
             {
-                var model = models[i];
+                var level = model.Level.HasValue ? model.Level.Value
+                    : throw new InvalidOperationException("Failed to get level, no level data");
 
-                if (model.HaveDimmer.HasValue && model.HaveDimmer.Value == true)
+                var maxLevel = model.MaxDimLevel.HasValue
+                    ? model.MaxDimLevel.Value
+                    : 100;
+
+                var isReadOnly = string.IsNullOrEmpty(model.DimmerType)
+                    || model.DimmerType == DimmerType.None;
+
+                traits.Add(new LevelTrait(model)
                 {
-                    var level = model.Level.HasValue ? model.Level.Value
-                        : throw new InvalidOperationException("Failed to get level, no level data");
-
-                    var maxLevel = model.MaxDimLevel.HasValue
-                        ? model.MaxDimLevel.Value
-                        : 100;
-
-                    var isReadOnly = string.IsNullOrEmpty(model.DimmerType)
-                        || model.DimmerType == DimmerType.None;
-
-                    traits.Add(new LevelTrait(model)
-                    {
-                        Level = level,
-                        MaxLevel = maxLevel,
-                    });
-                }
+                    Level = level,
+                    MaxLevel = maxLevel,
+                });
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿
-using DomoticzNet.Service.Models;
+using DomoticzNet.Models;
 
 using Newtonsoft.Json;
 

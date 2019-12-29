@@ -1,6 +1,6 @@
-﻿using DomoticzNet.Parser.Parsers;
+﻿using DomoticzNet.Models;
+using DomoticzNet.Parser.Parsers;
 using DomoticzNet.Parser.Traits;
-using DomoticzNet.Service.Models;
 
 using System;
 using System.Collections.Generic;
@@ -11,19 +11,18 @@ namespace DomoticzNet.Parser
 {
     public class DomoticzDeviceParser
     {
-        public void ParseDevices(IReadOnlyList<DomoticzPropertyModel> models, ICollection<DomoticzDevice> devices)
+        public void ParseTraits(IReadOnlyList<DomoticzDeviceModel> models, ICollection<IDomoticzTrait> traits)
         {
             if (models is null)
                 throw new System.ArgumentNullException(nameof(models));
-            if (devices is null)
-                throw new System.ArgumentNullException(nameof(devices));
+            if (traits is null)
+                throw new System.ArgumentNullException(nameof(traits));
 
-            var groupedProperties = new List<DomoticzPropertyModel>();
-            foreach (var group in models.GroupBy(x => x.Id))
+            for (int modelI = 0; modelI < models.Count; ++modelI)
             {
-                groupedProperties.Clear();
-                groupedProperties.AddRange(group);
-                devices.Add(ParseProperties(groupedProperties));
+                var model = models[modelI];
+                for (int parserI = 0; parserI < _Parsers.Count; ++parserI)
+                    _Parsers[parserI].ParseProperties(model, traits);
             }
         }
 
@@ -47,23 +46,5 @@ namespace DomoticzNet.Parser
         }
 
         #endregion Constructors
-
-        #region Private Methods
-
-        private DomoticzDevice ParseProperties(IReadOnlyList<DomoticzPropertyModel> models)
-        {
-            var properties = new List<IDomoticzTrait>();
-            for (int i = 0; i < _Parsers.Count; ++i)
-            {
-                _Parsers[i].ParseProperties(models, properties);
-            }
-
-            return new DomoticzDevice(properties)
-            {
-                Id = models.First().Id,
-            };
-        }
-
-        #endregion Private Methods
     }
 }

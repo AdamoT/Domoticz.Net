@@ -9,7 +9,7 @@
     <Import_RootNamespace>DomoticzNet</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Parser\DomoticzDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SwitchType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\DomoticzDeviceParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\BatteryParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\LevelParser.cs" />
@@ -28,27 +28,28 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converters\ColorValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_Properties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_Devices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_DeviceStates.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_Security.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_System.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\IDomoticzAuthorizationProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\ColorValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\CommandResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\Consts.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DeviceFilter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DeviceSubType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DeviceType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DimmerType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DomoticzSettingsResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\LogLevel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\DomoticzPropertyModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\GetLogsResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\GetPropertiesResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\InstanceInfoResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\ResponseStatus.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SecurityStatusResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SunriseSunsetInfoResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\SwitchType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Models\UnitType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ColorValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CommandResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Consts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DeviceFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DeviceSubType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DeviceType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DimmerType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DomoticzSettingsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LogLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DomoticzDeviceModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GetLogsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GetDevicesResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\InstanceInfoResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ResponseStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SecurityStatusResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SunriseSunsetInfoResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SwitchTypeVal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UnitType.cs" />
   </ItemGroup>
 </Project>

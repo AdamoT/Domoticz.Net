@@ -1,4 +1,4 @@
-﻿namespace DomoticzNet.Service.Models
+﻿namespace DomoticzNet.Models
 {
     public enum LogLevel
     {

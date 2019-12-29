@@ -1,4 +1,4 @@
-﻿using DomoticzNet.Service.Models;
+﻿using DomoticzNet.Models;
 
 namespace DomoticzNet.Parser.Traits
 {
@@ -6,7 +6,7 @@ namespace DomoticzNet.Parser.Traits
     {
         public float SetPoint { get; set; }
 
-        public SetPointTrait(DomoticzPropertyModel propertyModel) : base(propertyModel)
+        public SetPointTrait(DomoticzDeviceModel propertyModel) : base(propertyModel)
         {
         }
     }

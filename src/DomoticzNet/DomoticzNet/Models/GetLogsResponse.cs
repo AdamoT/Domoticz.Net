@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace DomoticzNet.Service.Models
+namespace DomoticzNet.Models
 {
     public class GetLogsResponse
     {

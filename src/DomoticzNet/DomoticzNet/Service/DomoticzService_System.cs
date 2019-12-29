@@ -1,4 +1,5 @@
-﻿using DomoticzNet.Service.Models;
+﻿
+using DomoticzNet.Models;
 
 using System;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace DomoticzNet.Service
             return InvokeApiCall<SunriseSunsetInfoResponse>(query);
         }
 
-        public Task<GetLogsResponse> GetLogs(TimeSpan timeSpan = default, LogLevel logLevel = LogLevel.All)
+        public Task<GetLogsResponse> GetLogs(TimeSpan timeSpan = default, Models.LogLevel logLevel = LogLevel.All)
         {
             //json.htm?type=command&param=getlog&lastlogtime=LASTLOGTIME&loglevel=LOGLEVEL 
             var query = HttpUtility.ParseQueryString("");

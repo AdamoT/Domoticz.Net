@@ -1,5 +1,5 @@
 ﻿
-using DomoticzNet.Service.Models;
+using DomoticzNet.Models;
 
 namespace DomoticzNet.Parser.Traits
 {
@@ -8,7 +8,7 @@ namespace DomoticzNet.Parser.Traits
         public bool IsOn { get; set; }
         public bool IsReadOnly { get; set; }
 
-        public OnOffTrait(DomoticzPropertyModel propertyModel) : base(propertyModel)
+        public OnOffTrait(DomoticzDeviceModel propertyModel) : base(propertyModel)
         {
         }
     }

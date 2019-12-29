@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 
-namespace DomoticzNet.Service.Models
+namespace DomoticzNet.Models
 {
-    public partial class GetPropertiesResponse : SunriseSunsetInfoResponse
+    public partial class GetDevicesResponse : SunriseSunsetInfoResponse
     {
         [JsonProperty("ActTime")]
         public long ActTime { get; set; }
@@ -13,6 +13,6 @@ namespace DomoticzNet.Service.Models
         public string AppVersion { get; set; }
 
         [JsonProperty("result")]
-        public List<DomoticzPropertyModel> Result { get; } = new List<DomoticzPropertyModel>();
+        public List<DomoticzDeviceModel> Devices { get; } = new List<DomoticzDeviceModel>();
     }
 }

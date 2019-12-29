@@ -3,7 +3,7 @@
 using System;
 using System.Linq;
 
-namespace DomoticzNet.Service.Models
+namespace DomoticzNet.Models
 {
     public enum DeviceFilter
     {
