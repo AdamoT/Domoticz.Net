@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Newtonsoft.Json;
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,9 +40,10 @@ namespace DomoticzNetTests
         [DataRow(2)]
         [DataRow(5)]
         [DataRow(6)]
-        public void TestMiLightRgbw(int idx)
+        public void TestColorSettingTraits(int idx)
         {
             var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             var onOffTrait = traits.OfType<OnOffTrait>().FirstOrDefault();
             var levelTrait = traits.OfType<LevelTrait>().FirstOrDefault();
@@ -63,10 +63,12 @@ namespace DomoticzNetTests
         [DataRow(10)]
         [DataRow(21)]
         [DataRow(28)]
+        [DataRow(65)]
         [DataRow(122)]
-        public void TestWritableOnOffSwitch(int idx)
+        public void TestOnOffTraits(int idx)
         {
             var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
 
@@ -77,9 +79,14 @@ namespace DomoticzNetTests
 
         [DataTestMethod]
         [DataRow(11)]
-        public void TestWritableLevelOnOffSwitches(int idx)
+        [DataRow(16)]
+        [DataRow(81)]
+        [DataRow(92)]
+        [DataRow(103)]
+        public void TestLevelOnOffTraits(int idx)
         {
             var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(2, traits.Count);
 
@@ -88,29 +95,6 @@ namespace DomoticzNetTests
 
             Assert.IsNotNull(onOffTrait);
             Assert.IsNotNull(levelTrait);
-
-            Assert.IsFalse(onOffTrait.IsReadOnly);
-            Assert.IsFalse(levelTrait.IsReadOnly);
-        }
-
-        [DataTestMethod]
-        [DataRow(16)]
-        [DataRow(81)]
-        [DataRow(92)]
-        [DataRow(103)]
-        public void TestWritableLevelOnOffSwitchesWithBattery(int idx)
-        {
-            var traits = GetParsedTraits((ulong)idx);
-
-            Assert.AreEqual(3, traits.Count);
-
-            var onOffTrait = traits.OfType<OnOffTrait>().FirstOrDefault();
-            var levelTrait = traits.OfType<LevelTrait>().FirstOrDefault();
-            var batteryTrait = traits.OfType<BatteryTrait>().FirstOrDefault();
-
-            Assert.IsNotNull(onOffTrait);
-            Assert.IsNotNull(levelTrait);
-            Assert.IsNotNull(batteryTrait);
 
             Assert.IsFalse(onOffTrait.IsReadOnly);
             Assert.IsFalse(levelTrait.IsReadOnly);
@@ -121,9 +105,18 @@ namespace DomoticzNetTests
         [DataRow(84)]
         [DataRow(95)]
         [DataRow(106)]
-        public void TestThermostatMode(int idx)
+        public void TestModeTraits(int idx)
         {
-            throw new NotImplementedException();
+            var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
+
+            Assert.AreEqual(1, traits.Count);
+
+            var modesTrait = traits.OfType<ModeTrait>().FirstOrDefault();
+
+            Assert.IsNotNull(modesTrait);
+            Assert.IsTrue(modesTrait.AvailableModes.Count > 0, "More than 0 modes");
+            Assert.IsTrue(modesTrait.AvailableModes.ContainsKey(modesTrait.CurrentMode), "Current mode exists in available modes");
         }
 
         [DataTestMethod]
@@ -134,75 +127,71 @@ namespace DomoticzNetTests
         [DataRow(57)]
         [DataRow(58)]
         [DataRow(59)]
-        [DataRow(60)]
-        [DataRow(61)]
-        [DataRow(70)]
         [DataRow(74)]
         [DataRow(78)]
         [DataRow(120)]
         [DataRow(123)]
         [DataRow(124)]
-        public void TestReadOnlyOnOffSensors(int idx)
+        public void TestReadOnlyOnOffTraits_NotWorking(int idx)
         {
             var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
 
             var onOffTrait = traits.OfType<OnOffTrait>().FirstOrDefault();
 
             Assert.IsNotNull(onOffTrait);
+            //There is absolutelly no way to tell if the device is read-only (only reports state) or is a onOff switch, even Domoticz UI allows turning on/off those devices altough the should be read-only
+            //Assert.IsTrue(onOffTrait.IsReadOnly);
+        }
 
+        [DataTestMethod]
+        [DataRow(60)]
+        [DataRow(61)]
+        [DataRow(70)]
+        public void TestReadOnlyOnOffTraits(int idx)
+        {
+            var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
+
+            Assert.AreEqual(1, traits.Count);
+
+            var onOffTrait = traits.OfType<OnOffTrait>().FirstOrDefault();
+
+            Assert.IsNotNull(onOffTrait);
             Assert.IsTrue(onOffTrait.IsReadOnly);
         }
 
         [DataTestMethod]
         [DataRow(20)]
+        [DataRow(29)]
+        [DataRow(35)]
+        [DataRow(37)]
         [DataRow(38)]
+        [DataRow(39)]
+        [DataRow(40)]
+        [DataRow(44)]
         [DataRow(53)]
         [DataRow(54)]
         [DataRow(55)]
-        public void TestReadOnlyValueSensors(int idx)
-        {
-            var traits = GetParsedTraits((ulong)idx);
-
-            Assert.AreEqual(1, traits.Count);
-
-            var sensorTrait = traits.OfType<SensorTrait>().FirstOrDefault();
-
-            Assert.IsNotNull(sensorTrait);
-
-            Assert.AreNotEqual(UnitType.Unknown, sensorTrait.Unit);
-        }
-
-        [DataTestMethod]
         [DataRow(91)]
         [DataRow(102)]
         [DataRow(113)]
-        public void TestReadOnlyValueSensorsWithBattery(int idx)
+        [DataRow(117)]
+        public void TestSensorsTraits(int idx)
         {
             var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
-            Assert.AreEqual(2, traits.Count);
+            Assert.IsTrue(traits.All(x => x.GetType() == typeof(SensorTrait)), "All traits are of type sensor");
 
-            var sensorTrait = traits.OfType<SensorTrait>().FirstOrDefault();
-            var batteryTrait = traits.OfType<BatteryTrait>().FirstOrDefault();
+            var sensorTraits = traits.OfType<SensorTrait>();
 
-            Assert.IsNotNull(sensorTrait);
-            Assert.IsNotNull(batteryTrait);
-
-            Assert.AreNotEqual(UnitType.Unknown, sensorTrait.Unit);
-        }
-
-        [DataTestMethod]
-        [DataRow(65)]
-        public void TestWakeOnLan(int idx)
-        {
-            var traits = GetParsedTraits((ulong)idx);
-
-            Assert.AreEqual(1, traits.Count);
-            var onOffTrait = traits[0] as OnOffTrait;
-            Assert.IsNotNull(onOffTrait);
-            Assert.IsFalse(onOffTrait.IsReadOnly);
+            foreach (var sensorTrait in sensorTraits)
+            {
+                Assert.AreNotEqual(UnitType.Unknown, sensorTrait.Unit);
+            }
         }
 
         [DataTestMethod]
@@ -212,34 +201,22 @@ namespace DomoticzNetTests
         [DataRow(86)]
         [DataRow(96)]
         [DataRow(97)]
+        [DataRow(107)]
         [DataRow(108)]
-        public void TestSetPoint(int idx)
+        public void TestSetPointTraits(int idx)
         {
             var traits = GetParsedTraits((ulong)idx);
+            traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
             var setPointTrait = traits[0] as SetPointTrait;
             Assert.IsNotNull(setPointTrait);
         }
 
-        [DataTestMethod]
-        [DataRow(107)]
-        public void TestSetpointWithBattery(int idx)
-        {
-            var traits = GetParsedTraits((ulong)idx);
-
-            Assert.AreEqual(2, traits.Count);
-            var setPointTrait = traits.OfType<SetPointTrait>().FirstOrDefault();
-            var batteryTrait = traits.OfType<BatteryTrait>().FirstOrDefault();
-
-            Assert.IsNotNull(setPointTrait);
-            Assert.IsNotNull(batteryTrait);
-        }
-
-        private IReadOnlyList<IDomoticzTrait> GetParsedTraits(ulong idx)
+        private List<IDomoticzTrait> GetParsedTraits(ulong idx)
         {
             return _TestParsedTraits.Where(x => x.Id == idx)
-                .ToArray();
+                .ToList();
         }
     }
 }

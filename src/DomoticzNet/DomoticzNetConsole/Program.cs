@@ -1,4 +1,5 @@
-﻿using DomoticzNet.Parser;
+﻿using DomoticzNet.Models;
+using DomoticzNet.Parser;
 using DomoticzNet.Parser.Traits;
 using DomoticzNet.Service;
 
@@ -34,18 +35,17 @@ namespace DomoticzNetConsole
             Console.WriteLine($"Obtained {deviceModels.Count} devices from Domoticz");
 
             var traits = new List<IDomoticzTrait>();
+            var unusedModels = new List<DomoticzDeviceModel>();
             var parser = new DomoticzDeviceParser();
-            parser.ParseTraits(deviceModels, traits);
+            parser.ParseTraits(deviceModels, traits, unusedModels);
 
-            Console.WriteLine($"Parsed {deviceModels.Count} devices from properties");
-            foreach (var d in traits)
-            {
-                Console.WriteLine($"Device {d.Id}, traits:");
-                foreach (var trait in traits)
-                {
-                    Console.WriteLine($" - {trait.GetType().Name} from {trait.SourceModel.Name} ({trait.SourceModel.Idx})");
-                }
-            }
+            Console.WriteLine($"Parsed {traits.Count} traits from domoticz devices");
+            foreach (var trait in traits)
+                Console.WriteLine($" - {trait.GetType().Name} from {trait.SourceModel.Name} ({trait.SourceModel.Idx})");
+
+            Console.WriteLine($"Unused domoticz devices: {unusedModels.Count}");
+            foreach (var model in unusedModels)
+                Console.WriteLine($" - {model.Name} ({model.Idx})");
         }
 
         private static void TestApis()

@@ -16,11 +16,6 @@ namespace DomoticzNet.Parser.Parsers
 
             if (!string.IsNullOrEmpty(model.SwitchType))
             {
-                if (model.Idx == 65 || model.Idx == 62)
-                {
-                    int a = 2;
-                }
-
                 bool isReadOnly = true;
                 if (!string.IsNullOrEmpty(model.DimmerType))
                 {
@@ -35,6 +30,18 @@ namespace DomoticzNet.Parser.Parsers
                 {
                     IsOn = isOn,
                     IsReadOnly = isReadOnly,
+                });
+            }
+            else if (model.Type == DeviceType.General
+                && model.SubType == DeviceSubType.Alarm)
+            {
+                var isOn = !string.IsNullOrEmpty(model.Data)
+                        && (model.Data == Consts.On);
+
+                properties.Add(new OnOffTrait(model)
+                {
+                    IsOn = isOn,
+                    IsReadOnly = true,
                 });
             }
         }

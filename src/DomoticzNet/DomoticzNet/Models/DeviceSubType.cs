@@ -9,8 +9,7 @@
         public const string ThermostatMode = "Thermostat Mode";
         public const string kWh = "kWh";
         public const string Voltage = "Voltage";
-        public const string Cm113 = "CM113";
-        public const string Electricsave = "Electrisave";
+        public const string Cm113Electricsave = "CM113, Electrisave";
         public const string Alarm = "Alarm";
         public const string ThermostatClock = "Thermostat Clock";
         public const string LaCrosseTx3 = "LaCrosse TX3";

@@ -11,7 +11,7 @@ namespace DomoticzNet.Parser
 {
     public class DomoticzDeviceParser
     {
-        public void ParseTraits(IReadOnlyList<DomoticzDeviceModel> models, ICollection<IDomoticzTrait> traits)
+        public void ParseTraits(IReadOnlyList<DomoticzDeviceModel> models, ICollection<IDomoticzTrait> traits, ICollection<DomoticzDeviceModel> unusedOrFailedDevices = null)
         {
             if (models is null)
                 throw new System.ArgumentNullException(nameof(models));
@@ -21,8 +21,25 @@ namespace DomoticzNet.Parser
             for (int modelI = 0; modelI < models.Count; ++modelI)
             {
                 var model = models[modelI];
+                int startTraitsCount = traits.Count;
                 for (int parserI = 0; parserI < _Parsers.Count; ++parserI)
-                    _Parsers[parserI].ParseProperties(model, traits);
+                {
+                    try
+                    {
+                        _Parsers[parserI].ParseProperties(model, traits);
+                    }
+#pragma warning disable CA1031 // Do not catch general exception types
+                    catch
+#pragma warning restore CA1031 // Do not catch general exception types
+                    {
+                        unusedOrFailedDevices?.Add(model);
+                    }
+                }
+
+                if (traits.Count == startTraitsCount)
+                {//No trait added for this model
+                    unusedOrFailedDevices?.Add(model);
+                }
             }
         }
 

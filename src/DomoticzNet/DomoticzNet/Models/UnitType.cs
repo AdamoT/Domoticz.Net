@@ -3,25 +3,37 @@
     public enum UnitType
     {
         Unknown = 0,
+        NotApplicable = 1,
 
-        TemperatureStart = 100,
+        Percent,
+
+        UnitsStart = 100,
+        TemperatureStart,
         Celcius,
         Kelvin,
         Fahrenheit,
-        TemperatureEnd = 200,
+        TemperatureEnd = TemperatureStart + 100,
+
+        LightIntensityStart,
+        Lux,
+        LightIntensityEnd = LightIntensityStart + 100,
 
         VoltageStart,
         Volt,
         KiloVolt,
-        VoltageEnd = 300,
+        VoltageEnd = VoltageStart + 100,
 
         PowerStart,
-        Wat,
-        KiloWat,
-        PowerEnd = 400,
+        Watt,
+        KiloWatt,
+        PowerEnd = PowerStart + 100,
+
+        PowerConsumptionStart,
+        KiloWattPerHour,
+        PowerConsumptionEnd = PowerConsumptionStart + 100,
 
         PowerCurrentStart,
         Amper,
-        PowerCurrentEnd = 500,
+        PowerCurrentEnd = PowerCurrentStart + 100,
     }
 }

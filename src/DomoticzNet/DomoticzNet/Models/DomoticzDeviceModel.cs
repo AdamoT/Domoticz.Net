@@ -175,7 +175,7 @@ namespace DomoticzNet.Models
         public double? SetPoint { get; set; }
 
         [JsonProperty("Mode", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Mode { get; set; }
+        public int? Mode { get; set; }
 
         [JsonProperty("Modes", NullValueHandling = NullValueHandling.Ignore)]
         public string Modes { get; set; }
