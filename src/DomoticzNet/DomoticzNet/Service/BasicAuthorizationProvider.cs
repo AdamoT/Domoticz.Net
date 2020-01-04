@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DomoticzNet.Service
 {
-    public class BasicAuthorizationService : IDomoticzAuthorizationProvider
+    public class BasicAuthorizationProvider : IDomoticzAuthorizationProvider
     {
         #region IDomoticzAuthorizationProvider
 
@@ -41,7 +41,7 @@ namespace DomoticzNet.Service
 
         #region Constructors
 
-        public BasicAuthorizationService(string userName, string password)
+        public BasicAuthorizationProvider(string userName, string password)
         {
             _UserName = userName;
             _Password = password;

@@ -22,11 +22,11 @@ namespace DomoticzNet.Parser
             {
                 var model = models[modelI];
                 int startTraitsCount = traits.Count;
-                for (int parserI = 0; parserI < _Parsers.Count; ++parserI)
+                for (int parserI = 0; parserI < Parsers.Count; ++parserI)
                 {
                     try
                     {
-                        _Parsers[parserI].ParseProperties(model, traits);
+                        Parsers[parserI].ParseProperties(model, traits);
                     }
 #pragma warning disable CA1031 // Do not catch general exception types
                     catch
@@ -43,11 +43,11 @@ namespace DomoticzNet.Parser
             }
         }
 
-        #region Fields
+        #region Properties
 
-        private List<ITraitParser> _Parsers = null;
+        public List<ITraitParser> Parsers { get; private set; }
 
-        #endregion Fields
+        #endregion Properties
 
         #region Constructors
 
@@ -59,7 +59,7 @@ namespace DomoticzNet.Parser
                     && !x.IsAbstract
                     && x.GetConstructors().Any(c => c.GetParameters().Length == 0));
 
-            _Parsers = new List<ITraitParser>(parserTypes.Select(x => Activator.CreateInstance(x) as ITraitParser));
+            Parsers = new List<ITraitParser>(parserTypes.Select(x => Activator.CreateInstance(x) as ITraitParser));
         }
 
         #endregion Constructors
