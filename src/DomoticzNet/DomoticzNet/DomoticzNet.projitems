@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\ModeTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\OnOffTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\SensorTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\SensorType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\SetPointTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\TraitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\BasicAuthorizationProvider.cs" />
@@ -58,6 +59,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\SecurityStatusResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SunriseSunsetInfoResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SwitchTypeVal.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UnitType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\UnitType.cs" />
   </ItemGroup>
 </Project>
