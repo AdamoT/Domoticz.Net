@@ -3,6 +3,7 @@
 using Newtonsoft.Json;
 
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -10,12 +11,12 @@ namespace DomoticzNet.Service
 {
     public partial class DomoticzService
     {
-        public Task SetLightSwitchState(ulong idx, bool state)
+        public Task SetLightSwitchState(int idx, bool state)
         {
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = _QueryParamSwitchLight;
-            query[_QueryIdx] = idx.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
             query[_QuerySwitchCmd] = state ? Consts.On : Consts.Off;
 
             return InvokeApiCall<CommandResponse>(query);
@@ -26,14 +27,14 @@ namespace DomoticzNet.Service
         /// </summary>
         /// <param name="idx"></param>
         /// <returns></returns>
-        public Task ToggleLightSwitchState(ulong idx)
+        public Task ToggleLightSwitchState(int idx)
         {
             //json.htm?type=command&param=switchlight&idx=99&switchcmd=Toggle
 
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = _QueryParamSwitchLight;
-            query[_QueryIdx] = idx.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
             query[_QuerySwitchCmd] = _QuerySwitchCmdToggle;
 
             return InvokeApiCall<CommandResponse>(query);
@@ -47,14 +48,14 @@ namespace DomoticzNet.Service
         /// <param name="idx"></param>
         /// <param name="level">Level in device specific range</param>
         /// <returns></returns>
-        public Task SetDimmLevel(ulong idx, int level)
+        public Task SetDimmLevel(int idx, int level)
         {
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = _QueryParamSwitchLight;
-            query[_QueryIdx] = idx.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
             query[_QuerySwitchCmd] = "Set Level";
-            query["level"] = level.ToString();
+            query["level"] = level.ToString(CultureInfo.InvariantCulture);
 
             return InvokeApiCall<CommandResponse>(query);
         }
@@ -67,7 +68,7 @@ namespace DomoticzNet.Service
         /// <param name="brightness">Brightness in range (0-100)</param>
         /// <param name="isWhite"></param>
         /// <returns></returns>
-        public Task SetLightColorHue(ulong idx, int hue, int brightness, bool isWhite)
+        public Task SetLightColorHue(int idx, int hue, int brightness, bool isWhite)
         {
             //json.htm?type=command&param=setcolbrightnessvalue
             //&idx=99&hue=274&brightness=40&iswhite=false
@@ -79,10 +80,10 @@ namespace DomoticzNet.Service
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = _QueryParamSetColor;
-            query[_QueryIdx] = idx.ToString();
-            query["hue"] = hue.ToString();
-            query[_QueryBrightness] = brightness.ToString();
-            query[_QueryIsWhite] = isWhite.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
+            query["hue"] = hue.ToString(CultureInfo.InvariantCulture);
+            query[_QueryBrightness] = brightness.ToString(CultureInfo.InvariantCulture);
+            query[_QueryIsWhite] = isWhite.ToString(CultureInfo.InvariantCulture);
 
             return InvokeApiCall<CommandResponse>(query);
         }
@@ -95,7 +96,7 @@ namespace DomoticzNet.Service
         /// <param name="brightness">Brightness in range (0-100)</param>
         /// <param name="isWhite"></param>
         /// <returns></returns>
-        public Task SetLightColorRgb(ulong idx, int rgb, int brightness, bool isWhite)
+        public Task SetLightColorRgb(int idx, int rgb, int brightness, bool isWhite)
         {
             //json.htm?type=command&param=setcolbrightnessvalue&idx=99&hex=RRGGBB&brightness=100&iswhite=false
             if (brightness < 0 || brightness > 100)
@@ -106,10 +107,10 @@ namespace DomoticzNet.Service
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = _QueryParamSetColor;
-            query[_QueryIdx] = idx.ToString();
-            query["hex"] = rgb.ToString();
-            query[_QueryBrightness] = brightness.ToString();
-            query[_QueryIsWhite] = isWhite.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
+            query["hex"] = rgb.ToString("X8", CultureInfo.InvariantCulture);
+            query[_QueryBrightness] = brightness.ToString(CultureInfo.InvariantCulture);
+            query[_QueryIsWhite] = isWhite.ToString(CultureInfo.InvariantCulture);
 
             return InvokeApiCall<CommandResponse>(query);
         }
@@ -121,7 +122,7 @@ namespace DomoticzNet.Service
         /// <param name="color"></param>
         /// <param name="brightness">Brightness in range (0-100)</param>
         /// <returns></returns>
-        public Task SetLightColor(ulong idx, ColorValue color, int brightness)
+        public Task SetLightColor(int idx, ColorValue color, int brightness)
         {
             //json.htm?type=command&param=setcolbrightnessvalue
             //&idx=130&color={"m":3,"t":0,"r":0,"g":0,"b":50,"cw":0,"ww":0}
@@ -132,8 +133,8 @@ namespace DomoticzNet.Service
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = _QueryParamSetColor;
-            query[_QueryIdx] = idx.ToString();
-            query[_QueryBrightness] = brightness.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
+            query[_QueryBrightness] = brightness.ToString(CultureInfo.InvariantCulture);
             query["color"] = JsonConvert.SerializeObject(color);
 
             return InvokeApiCall<CommandResponse>(query);
@@ -144,7 +145,7 @@ namespace DomoticzNet.Service
         /// </summary>
         /// <param name="kelvin">Range of kelvin parameter: 0..100, 0 is coldest, 100 is warmest</param>
         /// <returns></returns>
-        public Task SetLightTemperature(ulong idx, byte kelvin)
+        public Task SetLightTemperature(int idx, byte kelvin)
         {
             //json.htm?type=command&param=setkelvinlevel&idx=99&kelvin=1
             if (kelvin > 100)
@@ -153,33 +154,33 @@ namespace DomoticzNet.Service
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = "setkelvinlevel";
-            query[_QueryIdx] = idx.ToString();
-            query["kelvin"] = kelvin.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
+            query["kelvin"] = kelvin.ToString(CultureInfo.InvariantCulture);
 
             return InvokeApiCall<CommandResponse>(query);
         }
 
-        public Task SetSceneState(ulong idx, bool state)
+        public Task SetSceneState(int idx, bool state)
         {
             //json.htm?type=command&param=switchscene&idx=&switchcmd=
 
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = "switchscene";
-            query[_QueryIdx] = idx.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
             query[_QuerySwitchCmd] = state ? Consts.On : Consts.Off;
 
             return InvokeApiCall<CommandResponse>(query);
         }
 
-        public Task ToggleSceneState(ulong idx)
+        public Task ToggleSceneState(int idx)
         {
             //json.htm?type=command&param=switchscene&idx=&switchcmd=
 
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = "switchscene";
-            query[_QueryIdx] = idx.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
             query[_QuerySwitchCmd] = _QuerySwitchCmdToggle;
 
             return InvokeApiCall<CommandResponse>(query);
@@ -192,7 +193,7 @@ namespace DomoticzNet.Service
             var query = HttpUtility.ParseQueryString("");
             query[_QueryType] = _QueryTypeCommand;
             query[_QueryParam] = "setsetpoint";
-            query[_QueryIdx] = idx.ToString();
+            query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
             query["setpoint"] = setPoint.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
             return InvokeApiCall<CommandResponse>(query);

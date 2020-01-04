@@ -32,6 +32,7 @@ namespace DomoticzNet.Parser.Parsers
                 {
                     Unit = unitType,
                     Value = value,
+                    SensorType = RecognizeSensorType(model, unitType),
                 });
             }
             else if (model.Type == DeviceType.TemperatureAndHumiditySensor)
@@ -46,6 +47,7 @@ namespace DomoticzNet.Parser.Parsers
                     {
                         Unit = unitType,
                         Value = value,
+                        SensorType = RecognizeSensorType(model, unitType),
                     });
                 }
             }
@@ -60,17 +62,19 @@ namespace DomoticzNet.Parser.Parsers
                     {
                         Value = value,
                         Unit = unitType,
+                        SensorType = RecognizeSensorType(model, unitType),
                     });
                 }
                 if (!string.IsNullOrEmpty(model.Usage))
                 {
-                    if (!TryGetSingleSensorValue(model.Usage, out var value, out var unit))
+                    if (!TryGetSingleSensorValue(model.Usage, out var value, out var unitType))
                         throw new InvalidOperationException($"Failed to parse sensor Usage from {model.Usage} of type {model.Type} subtype {model.SubType}");
 
                     traits.Add(new SensorTrait(model)
                     {
                         Value = value,
-                        Unit = unit,
+                        Unit = unitType,
+                        SensorType = RecognizeSensorType(model, unitType),
                     });
                 }
             }
@@ -85,6 +89,27 @@ namespace DomoticzNet.Parser.Parsers
         #endregion Fields
 
         #region Private Methods
+
+        private static SensorType RecognizeSensorType(DomoticzDeviceModel model, UnitType unit)
+        {
+            if (unit == UnitType.Unknown || unit == UnitType.NotApplicable)
+                return SensorType.Unknown;
+            else if (unit > UnitType.TemperatureStart && unit < UnitType.TemperatureEnd)
+                return SensorType.Temperature;
+            else if (unit > UnitType.LightIntensityStart && unit < UnitType.LightIntensityStart)
+                return SensorType.LightIntensity;
+            else if (unit > UnitType.VoltageStart && unit < UnitType.VoltageEnd)
+                return SensorType.Voltage;
+            else if (unit > UnitType.PowerStart && unit < UnitType.PowerEnd)
+                return SensorType.Power;
+            else if (unit > UnitType.PowerConsumptionStart && unit < UnitType.PowerConsumptionEnd)
+                return SensorType.PowerConsumption;
+            else if (unit > UnitType.PowerCurrentStart && unit < UnitType.PowerCurrentEnd)
+                return SensorType.Current;
+            else if (unit == UnitType.Percent && model.Type == DeviceType.TemperatureAndHumiditySensor)
+                return SensorType.Humidity;
+            else return SensorType.Unknown;
+        }
 
         public bool TryGetSingleSensorValue(string data, out float value, out UnitType unitType)
         {

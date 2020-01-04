@@ -10,16 +10,16 @@ namespace DomoticzNet.Models
     public class DomoticzDeviceModel
     {
         [JsonProperty("AddjMulti")]
-        public long AddjMulti { get; set; }
+        public int AddjMulti { get; set; }
 
         [JsonProperty("AddjMulti2")]
-        public long AddjMulti2 { get; set; }
+        public int AddjMulti2 { get; set; }
 
         [JsonProperty("AddjValue")]
-        public long AddjValue { get; set; }
+        public int AddjValue { get; set; }
 
         [JsonProperty("AddjValue2")]
-        public long AddjValue2 { get; set; }
+        public int AddjValue2 { get; set; }
 
         [JsonProperty("BatteryLevel")]
         public byte BatteryLevel { get; set; }
@@ -31,7 +31,7 @@ namespace DomoticzNet.Models
         public ColorValue Color { get; set; }
 
         [JsonProperty("CustomImage")]
-        public long CustomImage { get; set; }
+        public int CustomImage { get; set; }
 
         [JsonProperty("Data")]
         public string Data { get; set; }
@@ -99,7 +99,7 @@ namespace DomoticzNet.Models
         public bool Notifications { get; set; }
 
         [JsonProperty("PlanID")]
-        public long PlanId { get; set; }
+        public int PlanId { get; set; }
 
         [JsonProperty("PlanIDs")]
         public List<long> PlanIDs { get; } = new List<long>();
@@ -166,16 +166,16 @@ namespace DomoticzNet.Models
         public bool? UsedByCamera { get; set; }
 
         [JsonProperty("XOffset")]
-        public long XOffset { get; set; }
+        public int XOffset { get; set; }
 
         [JsonProperty("YOffset")]
-        public long YOffset { get; set; }
+        public int YOffset { get; set; }
 
         [JsonProperty("idx")]
-        public ulong Idx { get; set; }
+        public int Idx { get; set; }
 
         [JsonProperty("SetPoint", NullValueHandling = NullValueHandling.Ignore)]
-        public double? SetPoint { get; set; }
+        public float? SetPoint { get; set; }
 
         [JsonProperty("Mode", NullValueHandling = NullValueHandling.Ignore)]
         public int? Mode { get; set; }
@@ -193,7 +193,7 @@ namespace DomoticzNet.Models
         public string Usage { get; set; }
 
         [JsonProperty("Voltage", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Voltage { get; set; }
+        public float? Voltage { get; set; }
 
         [JsonProperty("displaytype", NullValueHandling = NullValueHandling.Ignore)]
         public long? Displaytype { get; set; }
@@ -202,7 +202,7 @@ namespace DomoticzNet.Models
         public string DayTime { get; set; }
 
         [JsonProperty("Temp", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Temp { get; set; }
+        public float? Temp { get; set; }
 
         [JsonProperty("InternalState", NullValueHandling = NullValueHandling.Ignore)]
         public string InternalState { get; set; }
@@ -211,7 +211,7 @@ namespace DomoticzNet.Models
         public double? DewPoint { get; set; }
 
         [JsonProperty("Humidity", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Humidity { get; set; }
+        public int? Humidity { get; set; }
 
         [JsonProperty("HumidityStatus", NullValueHandling = NullValueHandling.Ignore)]
         public string HumidityStatus { get; set; }

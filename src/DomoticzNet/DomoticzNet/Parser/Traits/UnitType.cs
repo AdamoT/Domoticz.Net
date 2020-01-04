@@ -1,4 +1,4 @@
-﻿namespace DomoticzNet.Models
+﻿namespace DomoticzNet.Parser.Traits
 {
     public enum UnitType
     {
