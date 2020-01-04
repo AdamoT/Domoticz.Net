@@ -10,5 +10,7 @@ namespace DomoticzNet.Parser.Traits
         public SensorTrait(DomoticzDeviceModel propertyModel) : base(propertyModel)
         {
         }
+
+        public override string ToString() => $"{SourceModel.Name} [{this.GetType().Name} - {Unit.ToString()}] ({SourceModel.Idx})";
     }
 }

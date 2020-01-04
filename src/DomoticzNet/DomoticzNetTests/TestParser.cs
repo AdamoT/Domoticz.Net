@@ -215,7 +215,7 @@ namespace DomoticzNetTests
 
         private List<IDomoticzTrait> GetParsedTraits(ulong idx)
         {
-            return _TestParsedTraits.Where(x => x.Id == idx)
+            return _TestParsedTraits.Where(x => x.Idx == idx)
                 .ToList();
         }
     }

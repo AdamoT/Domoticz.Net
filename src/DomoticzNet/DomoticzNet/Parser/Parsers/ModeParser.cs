@@ -31,9 +31,8 @@ namespace DomoticzNet.Parser.Parsers
                     modesMap.Add(modeIdx, modes[i + 1]);
                 }
 
-                traits.Add(new ModeTrait(model)
+                traits.Add(new ModeTrait(model, modesMap)
                 {
-                    AvailableModes = modesMap,
                     CurrentMode = model.Mode.Value,
                 });
             }

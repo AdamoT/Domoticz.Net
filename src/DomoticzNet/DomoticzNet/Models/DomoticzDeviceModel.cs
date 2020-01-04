@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using DomoticzNet.Service.Converters;
+
+using Newtonsoft.Json;
 
 using System;
 using System.Collections.Generic;
@@ -48,7 +50,7 @@ namespace DomoticzNet.Models
         public bool Favorite { get; set; }
 
         [JsonProperty("HardwareID")]
-        public long HardwareId { get; set; }
+        public int HardwareId { get; set; }
 
         [JsonProperty("HardwareName")]
         public string HardwareName { get; set; }
@@ -57,7 +59,7 @@ namespace DomoticzNet.Models
         public string HardwareType { get; set; }
 
         [JsonProperty("HardwareTypeVal")]
-        public long HardwareTypeVal { get; set; }
+        public HardwareTypeValue HardwareTypeVal { get; set; }
 
         [JsonProperty("HaveDimmer", NullValueHandling = NullValueHandling.Ignore)]
         public bool? HaveDimmer { get; set; }
@@ -69,7 +71,8 @@ namespace DomoticzNet.Models
         public bool HaveTimeout { get; set; }
 
         [JsonProperty("ID")]
-        public string Id { get; set; }
+        [JsonConverter(typeof(HexNumberConverter))]
+        public int Id { get; set; }
 
         [JsonProperty("Image", NullValueHandling = NullValueHandling.Ignore)]
         public string Image { get; set; }
