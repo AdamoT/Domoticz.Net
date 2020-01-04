@@ -4,7 +4,7 @@ namespace DomoticzNet.Parser.Traits
 {
     public class TraitBase : IDomoticzTrait
     {
-        public ulong Idx { get; }
+        public int Idx { get; }
         public DomoticzDeviceModel SourceModel { get; }
 
         public TraitBase(DomoticzDeviceModel propertyModel)
