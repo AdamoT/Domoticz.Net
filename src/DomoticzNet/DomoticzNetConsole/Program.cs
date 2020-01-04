@@ -29,7 +29,7 @@ namespace DomoticzNetConsole
 
         private static void TestParsingHierarchy()
         {
-            var authorizationProvider = new BasicAuthorizationService(_UserName, _Password);
+            var authorizationProvider = new BasicAuthorizationProvider(_UserName, _Password);
             var service = new DomoticzService(_Address, _Port, authorizationProvider);
             var deviceModels = service.GetDevices().Result;
 
@@ -61,7 +61,7 @@ namespace DomoticzNetConsole
 
         private static void TestParsingTraits()
         {
-            var authorizationProvider = new BasicAuthorizationService(_UserName, _Password);
+            var authorizationProvider = new BasicAuthorizationProvider(_UserName, _Password);
             var service = new DomoticzService(_Address, _Port, authorizationProvider);
             var deviceModels = service.GetDevices().Result;
 
@@ -83,7 +83,7 @@ namespace DomoticzNetConsole
 
         private static void TestApis()
         {
-            var authorizationProvider = new BasicAuthorizationService(_UserName, _Password);
+            var authorizationProvider = new BasicAuthorizationProvider(_UserName, _Password);
             var service = new DomoticzService(_Address, _Port, authorizationProvider);
 
             var instanceInfo = service.GetInstanceInfo().Result;

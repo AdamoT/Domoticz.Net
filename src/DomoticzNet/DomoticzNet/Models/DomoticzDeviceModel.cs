@@ -10,16 +10,16 @@ namespace DomoticzNet.Models
     public class DomoticzDeviceModel
     {
         [JsonProperty("AddjMulti")]
-        public int AddjMulti { get; set; }
+        public float AddjMulti { get; set; }
 
         [JsonProperty("AddjMulti2")]
-        public int AddjMulti2 { get; set; }
+        public float AddjMulti2 { get; set; }
 
         [JsonProperty("AddjValue")]
-        public int AddjValue { get; set; }
+        public float AddjValue { get; set; }
 
         [JsonProperty("AddjValue2")]
-        public int AddjValue2 { get; set; }
+        public float AddjValue2 { get; set; }
 
         [JsonProperty("BatteryLevel")]
         public byte BatteryLevel { get; set; }

@@ -42,7 +42,7 @@ namespace DomoticzNetTests
         [DataRow(6)]
         public void TestColorSettingTraits(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             var onOffTrait = traits.OfType<OnOffTrait>().FirstOrDefault();
@@ -67,7 +67,7 @@ namespace DomoticzNetTests
         [DataRow(122)]
         public void TestOnOffTraits(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
@@ -85,7 +85,7 @@ namespace DomoticzNetTests
         [DataRow(103)]
         public void TestLevelOnOffTraits(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(2, traits.Count);
@@ -107,7 +107,7 @@ namespace DomoticzNetTests
         [DataRow(106)]
         public void TestModeTraits(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
@@ -134,7 +134,7 @@ namespace DomoticzNetTests
         [DataRow(124)]
         public void TestReadOnlyOnOffTraits_NotWorking(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
@@ -152,7 +152,7 @@ namespace DomoticzNetTests
         [DataRow(70)]
         public void TestReadOnlyOnOffTraits(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
@@ -181,7 +181,7 @@ namespace DomoticzNetTests
         [DataRow(117)]
         public void TestSensorsTraits(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.IsTrue(traits.All(x => x.GetType() == typeof(SensorTrait)), "All traits are of type sensor");
@@ -205,7 +205,7 @@ namespace DomoticzNetTests
         [DataRow(108)]
         public void TestSetPointTraits(int idx)
         {
-            var traits = GetParsedTraits((ulong)idx);
+            var traits = GetParsedTraits(idx);
             traits.RemoveAll(x => x.GetType() == typeof(BatteryTrait));
 
             Assert.AreEqual(1, traits.Count);
@@ -213,7 +213,7 @@ namespace DomoticzNetTests
             Assert.IsNotNull(setPointTrait);
         }
 
-        private List<IDomoticzTrait> GetParsedTraits(ulong idx)
+        private List<IDomoticzTrait> GetParsedTraits(int idx)
         {
             return _TestParsedTraits.Where(x => x.Idx == idx)
                 .ToList();
