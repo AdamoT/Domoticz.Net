@@ -64,6 +64,7 @@ namespace DomoticzNet.Parser
                     var device = new DomoticzDevice
                     {
                         Id = byDevice.Key,
+                        Hardware = hardware,
                     };
                     hardware.Devices.Add(device);
 

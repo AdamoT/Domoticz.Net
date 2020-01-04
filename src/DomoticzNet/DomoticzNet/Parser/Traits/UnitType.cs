@@ -3,37 +3,45 @@
     public enum UnitType
     {
         Unknown = 0,
-        NotApplicable = 1,
+        NotApplicable,
 
-        Percent,
+        ClassStartGeneral = 100,
+        OnOff,
+        String,
+        Percentage,
+        ClassEndGeneral = ClassStartGeneral + 100,
 
-        UnitsStart = 100,
-        TemperatureStart,
+        ClassStartTemperature,
         Celcius,
-        Kelvin,
         Fahrenheit,
-        TemperatureEnd = TemperatureStart + 100,
+        Kelvin,
+        ClassEndTemperature = ClassStartTemperature + 100,
 
-        LightIntensityStart,
+        ClassStartLightBrightness,
         Lux,
-        LightIntensityEnd = LightIntensityStart + 100,
+        ClassEndLightBrightness,
 
-        VoltageStart,
+        ClassStartSoundLoudness,
+        Decibel,
+        ClassEndSoundLoudness = ClassStartSoundLoudness + 100,
+
+        ClassStartVoltage,
         Volt,
         KiloVolt,
-        VoltageEnd = VoltageStart + 100,
+        ClassEndVoltage = ClassStartVoltage + 100,
 
-        PowerStart,
+        ClassStartPowerCurrent,
+        Amper,
+        ClassEndPowerCurrent = ClassStartPowerCurrent + 100,
+
+        ClassStartPower,
         Watt,
         KiloWatt,
-        PowerEnd = PowerStart + 100,
+        ClassEndPower = ClassStartPower + 100,
 
-        PowerConsumptionStart,
+        ClassStartPowerConsumption,
+        WattPerHour,
         KiloWattPerHour,
-        PowerConsumptionEnd = PowerConsumptionStart + 100,
-
-        PowerCurrentStart,
-        Amper,
-        PowerCurrentEnd = PowerCurrentStart + 100,
+        ClassEndPowerConsumption = ClassStartPowerConsumption + 100,
     }
 }

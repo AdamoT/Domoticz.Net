@@ -94,19 +94,19 @@ namespace DomoticzNet.Parser.Parsers
         {
             if (unit == UnitType.Unknown || unit == UnitType.NotApplicable)
                 return SensorType.Unknown;
-            else if (unit > UnitType.TemperatureStart && unit < UnitType.TemperatureEnd)
+            else if (unit > UnitType.ClassStartTemperature && unit < UnitType.ClassEndTemperature)
                 return SensorType.Temperature;
-            else if (unit > UnitType.LightIntensityStart && unit < UnitType.LightIntensityStart)
+            else if (unit > UnitType.ClassStartLightBrightness && unit < UnitType.ClassEndLightBrightness)
                 return SensorType.LightIntensity;
-            else if (unit > UnitType.VoltageStart && unit < UnitType.VoltageEnd)
+            else if (unit > UnitType.ClassStartVoltage && unit < UnitType.ClassEndVoltage)
                 return SensorType.Voltage;
-            else if (unit > UnitType.PowerStart && unit < UnitType.PowerEnd)
+            else if (unit > UnitType.ClassStartPower && unit < UnitType.ClassEndPower)
                 return SensorType.Power;
-            else if (unit > UnitType.PowerConsumptionStart && unit < UnitType.PowerConsumptionEnd)
+            else if (unit > UnitType.ClassStartPowerConsumption && unit < UnitType.ClassEndPowerConsumption)
                 return SensorType.PowerConsumption;
-            else if (unit > UnitType.PowerCurrentStart && unit < UnitType.PowerCurrentEnd)
+            else if (unit > UnitType.ClassStartPowerCurrent && unit < UnitType.ClassEndPowerCurrent)
                 return SensorType.Current;
-            else if (unit == UnitType.Percent && model.Type == DeviceType.TemperatureAndHumiditySensor)
+            else if (unit == UnitType.Percentage && model.Type == DeviceType.TemperatureAndHumiditySensor)
                 return SensorType.Humidity;
             else return SensorType.Unknown;
         }
@@ -148,7 +148,7 @@ namespace DomoticzNet.Parser.Parsers
                         unitType = UnitType.Lux;
                         break;
                     case "%":
-                        unitType = UnitType.Percent;
+                        unitType = UnitType.Percentage;
                         break;
                 }
             }
