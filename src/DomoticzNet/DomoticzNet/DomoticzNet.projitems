@@ -9,8 +9,11 @@
     <Import_RootNamespace>DomoticzNet</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\HardwareTypeValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SwitchType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\DomoticzDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\DomoticzDeviceParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parser\DomoticzHardware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\BatteryParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\LevelParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Parsers\ColorSettingParser.cs" />
@@ -30,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parser\Traits\TraitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\BasicAuthorizationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converters\ColorValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converters\HexNumberConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\DomoticzService_Devices.cs" />

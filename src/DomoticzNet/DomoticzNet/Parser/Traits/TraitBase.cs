@@ -4,15 +4,15 @@ namespace DomoticzNet.Parser.Traits
 {
     public class TraitBase : IDomoticzTrait
     {
-        public ulong Id { get; }
+        public ulong Idx { get; }
         public DomoticzDeviceModel SourceModel { get; }
 
         public TraitBase(DomoticzDeviceModel propertyModel)
         {
             SourceModel = propertyModel ?? throw new System.ArgumentNullException(nameof(propertyModel));
-            Id = propertyModel.Idx;
+            Idx = propertyModel.Idx;
         }
 
-        public override string ToString() => $"{this.GetType().Name} - {SourceModel.Name}";
+        public override string ToString() => $"{SourceModel.Name} [{this.GetType().Name}] ({SourceModel.Idx})";
     }
 }

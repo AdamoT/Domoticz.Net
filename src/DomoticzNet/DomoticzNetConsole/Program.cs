@@ -21,12 +21,45 @@ namespace DomoticzNetConsole
             _Port = 8080;
 
             //TestApis();
-            TestParser();
+            //TestParsingTraits();
+            TestParsingHierarchy();
 
             Console.ReadKey();
         }
 
-        private static void TestParser()
+        private static void TestParsingHierarchy()
+        {
+            var authorizationProvider = new BasicAuthorizationService(_UserName, _Password);
+            var service = new DomoticzService(_Address, _Port, authorizationProvider);
+            var deviceModels = service.GetDevices().Result;
+
+            Console.WriteLine($"Obtained {deviceModels.Count} devices from Domoticz");
+
+            var unusedModels = new List<DomoticzDeviceModel>();
+            var parser = new DomoticzDeviceParser();
+            var hardwares = parser.ParseDeviceHierarchy(deviceModels, unusedModels);
+
+            foreach (var hardware in hardwares)
+            {
+                Console.WriteLine($"Hardware: {hardware.Name} ({hardware.TypeName}), Devices {hardware.Devices.Count}");
+
+                foreach (var device in hardware.Devices)
+                {
+                    Console.WriteLine($"- Device: ({device.Id}), Traits {device.Traits.Count}");
+
+                    foreach (var trait in device.Traits)
+                    {
+                        Console.WriteLine($"-- Trait: {trait.ToString()})");
+                    }
+                }
+            }
+
+            Console.WriteLine($"Unused domoticz devices: {unusedModels.Count}");
+            foreach (var model in unusedModels)
+                Console.WriteLine($" - {model.Name} ({model.Idx})");
+        }
+
+        private static void TestParsingTraits()
         {
             var authorizationProvider = new BasicAuthorizationService(_UserName, _Password);
             var service = new DomoticzService(_Address, _Port, authorizationProvider);
