@@ -2,6 +2,7 @@
 
 namespace DomoticzNet.Service
 {
+    [Serializable]
     public class DomoticzException : Exception
     {
         public DomoticzException()
