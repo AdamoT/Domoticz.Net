@@ -215,5 +215,7 @@ namespace DomoticzNet.Models
 
         [JsonProperty("HumidityStatus", NullValueHandling = NullValueHandling.Ignore)]
         public string HumidityStatus { get; set; }
+
+        public override string ToString() => $"IDX: {Idx} Name: {Name}";
     }
 }
