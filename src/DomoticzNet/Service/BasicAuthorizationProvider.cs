@@ -4,49 +4,49 @@ using System.Text;
 
 namespace DomoticzNet.Service
 {
-    public class BasicAuthorizationProvider : IDomoticzAuthorizationProvider
-    {
-        #region IDomoticzAuthorizationProvider
+	public class BasicAuthorizationProvider : IDomoticzAuthorizationProvider
+	{
+		#region Fields
 
-        public virtual void AuthorizeUri(UriBuilder uriBuilder)
-        {
-            if (uriBuilder is null)
-                throw new ArgumentNullException(nameof(uriBuilder));
+		private readonly string _UserName = null, _Password = null;
 
-            uriBuilder.Scheme = UseHttps ? "https" : "http";
-        }
+		#endregion Fields
 
-        public virtual void AuthorizeRequest(HttpWebRequest request)
-        {
-            if (request is null)
-                throw new ArgumentNullException(nameof(request));
+		#region Constructors
 
-            var authorizationString = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_UserName}:{_Password}"));
-            request.Headers[HttpRequestHeader.Authorization] = $"Basic {authorizationString}";
-        }
+		public BasicAuthorizationProvider(string userName, string password)
+		{
+			_UserName = userName;
+			_Password = password;
+		}
 
-        #endregion IDomoticzAuthorizationProvider
+		#endregion Constructors
 
-        #region Properties
+		#region Properties
 
-        public virtual bool UseHttps { get; set; }
+		public virtual bool UseHttps { get; set; }
 
-        #endregion Properties
+		#endregion Properties
 
-        #region Fields
+		#region IDomoticzAuthorizationProvider
 
-        private readonly string _UserName = null, _Password = null;
+		public virtual void AuthorizeUri(UriBuilder uriBuilder)
+		{
+			if (uriBuilder is null)
+				throw new ArgumentNullException(nameof(uriBuilder));
 
-        #endregion Fields
+			uriBuilder.Scheme = UseHttps ? "https" : "http";
+		}
 
-        #region Constructors
+		public virtual void AuthorizeRequest(HttpWebRequest request)
+		{
+			if (request is null)
+				throw new ArgumentNullException(nameof(request));
 
-        public BasicAuthorizationProvider(string userName, string password)
-        {
-            _UserName = userName;
-            _Password = password;
-        }
+			var authorizationString = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_UserName}:{_Password}"));
+			request.Headers[HttpRequestHeader.Authorization] = $"Basic {authorizationString}";
+		}
 
-        #endregion Constructors
-    }
+		#endregion IDomoticzAuthorizationProvider
+	}
 }

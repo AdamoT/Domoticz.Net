@@ -2,9 +2,9 @@
 
 namespace DomoticzNet.Parser.Traits
 {
-    public interface IDomoticzTrait
-    {
-        int Idx { get; }
-        DomoticzDeviceModel SourceModel { get; }
-    }
+	public interface IDomoticzTrait
+	{
+		int Idx { get; }
+		DomoticzDeviceModel SourceModel { get; }
+	}
 }

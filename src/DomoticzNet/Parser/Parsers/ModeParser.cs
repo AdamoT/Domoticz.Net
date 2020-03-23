@@ -1,49 +1,48 @@
-﻿using DomoticzNet.Models;
-using DomoticzNet.Parser.Traits;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DomoticzNet.Models;
+using DomoticzNet.Parser.Traits;
 
 namespace DomoticzNet.Parser.Parsers
 {
-    public class ModeParser : ITraitParser
-    {
-        #region ITraitParser
+	public class ModeParser : ITraitParser
+	{
+		#region Fields
 
-        public void ParseProperties(DomoticzDeviceModel model, ICollection<IDomoticzTrait> traits)
-        {
-            if (model is null)
-                throw new System.ArgumentNullException(nameof(model));
-            if (traits is null)
-                throw new System.ArgumentNullException(nameof(traits));
+		private readonly char[] _ModesSeparators = {';'};
 
-            if (!string.IsNullOrEmpty(model.Modes)
-                && model.Mode.HasValue)
-            {
-                var modes = model.Modes.Split(_ModesSeparators, StringSplitOptions.RemoveEmptyEntries);
-                if ((modes.Length % 2) != 0)
-                    throw new InvalidOperationException("Modes should have even number of items");
+		#endregion Fields
 
-                var modesMap = new Dictionary<int, string>();
-                for (int i = 0; i < modes.Length; i += 2)
-                {
-                    var modeIdx = int.Parse(modes[i]);
-                    modesMap.Add(modeIdx, modes[i + 1]);
-                }
+		#region ITraitParser
 
-                traits.Add(new ModeTrait(model, modesMap)
-                {
-                    CurrentMode = model.Mode.Value,
-                });
-            }
-        }
+		public void ParseProperties(DomoticzDeviceModel model, ICollection<IDomoticzTrait> traits)
+		{
+			if (model is null)
+				throw new ArgumentNullException(nameof(model));
+			if (traits is null)
+				throw new ArgumentNullException(nameof(traits));
 
-        #endregion ITraitParser
+			if (!string.IsNullOrEmpty(model.Modes)
+				&& model.Mode.HasValue)
+			{
+				var modes = model.Modes.Split(_ModesSeparators, StringSplitOptions.RemoveEmptyEntries);
+				if (modes.Length % 2 != 0)
+					throw new InvalidOperationException("Modes should have even number of items");
 
-        #region Fields
+				var modesMap = new Dictionary<int, string>();
+				for (var i = 0; i < modes.Length; i += 2)
+				{
+					var modeIdx = int.Parse(modes[i]);
+					modesMap.Add(modeIdx, modes[i + 1]);
+				}
 
-        private char[] _ModesSeparators = new[] { ';' };
+				traits.Add(new ModeTrait(model, modesMap)
+				{
+					CurrentMode = model.Mode.Value
+				});
+			}
+		}
 
-        #endregion Fields
-    }
+		#endregion ITraitParser
+	}
 }

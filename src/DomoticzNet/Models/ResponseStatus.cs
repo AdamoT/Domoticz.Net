@@ -2,11 +2,12 @@
 
 namespace DomoticzNet.Models
 {
-    public enum ResponseStatus
-    {
-        [JsonProperty("Ok")]
-        OK,
-        [JsonProperty("Err")]
-        Error,
-    }
+	public enum ResponseStatus
+	{
+		[JsonProperty("Ok")]
+		OK,
+
+		[JsonProperty("Err")]
+		Error
+	}
 }

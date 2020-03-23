@@ -2,12 +2,12 @@
 
 namespace DomoticzNet.Parser.Traits
 {
-    public class SetPointTrait : TraitBase
-    {
-        public float SetPoint { get; set; }
+	public class SetPointTrait : TraitBase
+	{
+		public SetPointTrait(DomoticzDeviceModel propertyModel) : base(propertyModel)
+		{
+		}
 
-        public SetPointTrait(DomoticzDeviceModel propertyModel) : base(propertyModel)
-        {
-        }
-    }
+		public float SetPoint { get; set; }
+	}
 }

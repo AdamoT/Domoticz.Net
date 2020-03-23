@@ -3,9 +3,9 @@ using System.Net;
 
 namespace DomoticzNet.Service
 {
-    public interface IDomoticzAuthorizationProvider
-    {
-        void AuthorizeUri(UriBuilder uriBuilder);
-        void AuthorizeRequest(HttpWebRequest request);
-    }
+	public interface IDomoticzAuthorizationProvider
+	{
+		void AuthorizeUri(UriBuilder uriBuilder);
+		void AuthorizeRequest(HttpWebRequest request);
+	}
 }
