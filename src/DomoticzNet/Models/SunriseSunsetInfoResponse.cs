@@ -20,11 +20,11 @@ namespace DomoticzNet.Models
 		[JsonProperty("DayLength")]
 		public TimeSpan DayLength { get; set; }
 
-		[JsonProperty("NautTwilightEnd")]
-		public DateTime NautTwilightEnd { get; set; }
-
-		[JsonProperty("NautTwilightStart")]
-		public DateTime NautTwilightStart { get; set; }
+		// [JsonProperty("NautTwilightEnd")]
+		// public DateTime NautTwilightEnd { get; set; }
+		//
+		// [JsonProperty("NautTwilightStart")]
+		// public DateTime NautTwilightStart { get; set; }
 
 		[JsonProperty("ServerTime")]
 		public DateTime ServerTime { get; set; }

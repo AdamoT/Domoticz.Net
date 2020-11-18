@@ -48,7 +48,8 @@ namespace DomoticzNet.Service
 			Converters = new List<JsonConverter>
 			{
 				new ColorValueConverter()
-			}
+			},
+			MissingMemberHandling = MissingMemberHandling.Ignore,
 		};
 
 		public JsonSerializer Serializer { get; }
