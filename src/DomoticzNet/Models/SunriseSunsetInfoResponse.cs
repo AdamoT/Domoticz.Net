@@ -5,17 +5,17 @@ namespace DomoticzNet.Models
 {
 	public class SunriseSunsetInfoResponse : CommandResponse
 	{
-		[JsonProperty("AstrTwilightEnd")]
-		public DateTime AstrTwilightEnd { get; set; }
+		//[JsonProperty("AstrTwilightEnd")]
+		//public DateTime AstrTwilightEnd { get; set; }
 
-		[JsonProperty("AstrTwilightStart")]
-		public DateTime AstrTwilightStart { get; set; }
+		//[JsonProperty("AstrTwilightStart")]
+		//public DateTime AstrTwilightStart { get; set; }
 
-		[JsonProperty("CivTwilightEnd")]
-		public DateTime CivTwilightEnd { get; set; }
+		//[JsonProperty("CivTwilightEnd")]
+		//public DateTime CivTwilightEnd { get; set; }
 
-		[JsonProperty("CivTwilightStart")]
-		public DateTime CivTwilightStart { get; set; }
+		//[JsonProperty("CivTwilightStart")]
+		//public DateTime CivTwilightStart { get; set; }
 
 		[JsonProperty("DayLength")]
 		public TimeSpan DayLength { get; set; }

@@ -60,6 +60,7 @@ namespace DomoticzNet.Service
 
 		private const string _QueryType = "type";
 		private const string _QueryTypeCommand = "command";
+		private const string _QueryTypeSetUsed = "setused";
 		private const string _QueryTypeDevices = "devices";
 		private const string _QueryParam = "param";
 		private const string _QueryParamSwitchLight = "switchlight";
@@ -100,12 +101,19 @@ namespace DomoticzNet.Service
 
 					using (var jsonReader = new JsonTextReader(new StreamReader(responseStream)))
 					{
-						var result = Serializer.Deserialize<T>(jsonReader);
-						if (result is CommandResponse commandResponse)
-							if (commandResponse.Status == ResponseStatus.Error)
-								throw new DomoticzException(commandResponse.Message);
+						try
+						{
+							var result = Serializer.Deserialize<T>(jsonReader);
+							if (result is CommandResponse commandResponse)
+								if (commandResponse.Status == ResponseStatus.Error)
+									throw new DomoticzException(commandResponse.Message);
 
-						return result;
+							return result;
+						}
+						catch(Exception e)
+                        {
+							throw;
+                        }						
 					}
 				}
 			}

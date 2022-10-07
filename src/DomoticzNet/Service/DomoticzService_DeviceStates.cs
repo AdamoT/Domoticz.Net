@@ -204,14 +204,13 @@ namespace DomoticzNet.Service
         /// <returns></returns>
         public Task SetThermostatMode(int idx, int mode)
 		{
-			//json.htm?type=command&param=switchmodal&idx=23&status=off&action=1
+			//json.htm?type=setused&idx=23&tmode=0&used=true
 
 			var query = HttpUtility.ParseQueryString("");
-			query[_QueryType] = _QueryTypeCommand;
-			query[_QueryParam] = "switchmodal";
 			query[_QueryIdx] = idx.ToString(CultureInfo.InvariantCulture);
-			query["status"] = mode.ToString(CultureInfo.InvariantCulture);
-			query["action"] = "1";
+			query[_QueryType] = _QueryTypeSetUsed;
+			query["tmode"] = mode.ToString(CultureInfo.InvariantCulture);
+			query["used"] = "true";
 
 			return InvokeApiCall<CommandResponse>(query);
 		}
